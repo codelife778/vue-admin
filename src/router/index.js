@@ -54,6 +54,27 @@ export const constantRoutes = [
       meta: { title: 'Dashboard', icon: 'dashboard' }
     }]
   },
+  {
+    path: '/contentManage',
+    component: Layout,
+    redirect: '/contentManage/articleList',
+    name: 'ContentManage',
+    meta: { title: '内容管理', icon: 'el-icon-s-help' },
+    children: [
+      {
+        path: 'articleList',
+        name: 'ArticleList',
+        component: () => import('@/views/contentManage/articleList/index'),
+        meta: { title: '文章列表', icon: 'table' }
+      },
+      {
+        path: 'materialList',
+        name: 'MaterialList',
+        component: () => import('@/views/contentManage/materialList/index'),
+        meta: { title: '素材列表', icon: 'tree' }
+      }
+    ]
+  },
 
   {
     path: '/example',
