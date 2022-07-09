@@ -1,13 +1,13 @@
 <template>
-    <div class="materialList">
-        这是素材列表
-    </div>
+  <div class="materialList">
+    这是素材列表
+  </div>
 </template>
 
 <script>
-   export default {
-      name: '',
-   }
+export default {
+    name: ''
+}
 </script>
 
 <style lang="scss" scoped>

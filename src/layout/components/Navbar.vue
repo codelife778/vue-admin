@@ -5,12 +5,12 @@
     <breadcrumb class="breadcrumb-container" />
 
     <div class="right-menu">
-      
+
       <el-dropdown class="avatar-container" trigger="click">
-      
+
         <div class="avatar-wrapper">
-          <span class="navbar-user">欢迎管理员:&nbsp;&nbsp;{{ name}}</span>
-          <img :src="avatar" style="width:40px;height:40px" >
+          <span class="navbar-user">欢迎管理员:&nbsp;&nbsp;{{ name }}</span>
+          <img :src="avatar" style="width:40px;height:40px">
           <i class="el-icon-caret-bottom" />
         </div>
         <el-dropdown-menu slot="dropdown" class="user-dropdown">
@@ -38,40 +38,40 @@
 import { mapGetters } from 'vuex'
 import Breadcrumb from '@/components/Breadcrumb'
 import Hamburger from '@/components/Hamburger'
-import { getToken,getUserInfo,removeToken,removeUserInfo } from '@/utils/auth' 
+import { getToken, getUserInfo, removeToken, removeUserInfo } from '@/utils/auth'
 
 export default {
-  components: {
-    Breadcrumb,
-    Hamburger
-  },
-  computed: {
-    ...mapGetters([
-      'sidebar',
-      // 'avatar'
-    ]),
-   avatar(){
-      return getUserInfo().icon
-   },
-  name(){
-    return getUserInfo().username
-  }
-  },
-  methods: {
-    toggleSideBar() {
-      this.$store.dispatch('app/toggleSideBar')
+    components: {
+        Breadcrumb,
+        Hamburger
     },
-    async logout() {
-      removeToken()
-      removeUserInfo()
-      this.$router.push('/login')
-      // await this.$store.dispatch('user/logout')
-      // this.$router.push(`/login?redirect=${this.$route.fullPath}`)
+    computed: {
+        ...mapGetters([
+            'sidebar'
+            // 'avatar'
+        ]),
+        avatar() {
+            return getUserInfo().icon
+        },
+        name() {
+            return getUserInfo().username
+        }
+    },
+    mounted() {
+        console.log(getUserInfo())
+    },
+    methods: {
+        toggleSideBar() {
+            this.$store.dispatch('app/toggleSideBar')
+        },
+        async logout() {
+            removeToken()
+            removeUserInfo()
+            this.$router.push('/login')
+            // await this.$store.dispatch('user/logout')
+            // this.$router.push(`/login?redirect=${this.$route.fullPath}`)
+        }
     }
-  },
-  mounted(){
-    console.log(getUserInfo());
-  }
 }
 </script>
 
