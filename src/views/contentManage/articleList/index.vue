@@ -4,21 +4,21 @@
       <div slot="header">
         <span>条件查询</span>
       </div>
-      <el-form ref="form" :model="searchArticleForm" label-width="80px">
+      <el-form ref="form" :model="search" label-width="80px">
         <el-row :gutter="20">
           <el-col :span="6">
             <el-form-item label="作者">
-              <el-input v-model="searchArticleForm.name" placeholder="作者" size="small" clearable />
+              <el-input v-model="search.author" placeholder="作者" size="small" clearable />
             </el-form-item>
           </el-col>
           <el-col :span="6">
             <el-form-item label="标题">
-              <el-input v-model="searchArticleForm.title" placeholder="标题" size="small" clearable />
+              <el-input v-model="search.title" placeholder="标题" size="small" clearable />
             </el-form-item>
           </el-col>
           <el-col :span="6">
             <el-form-item label="编辑类型">
-              <el-select v-model="searchArticleForm.editorType" placeholder="编辑类型" size="small" clearable>
+              <el-select v-model="search.editorType" placeholder="编辑类型" size="small" clearable>
                 <el-option label="富文本" :value="0" />
                 <el-option label="markdown" :value="1" />
               </el-select>
@@ -39,8 +39,7 @@
     <el-card class="card">
       <div slot="header">
         <!-- 文章列表 -->
-        <el-button type="primary">新增</el-button>
-
+        <el-button type="primary" @click="toAddArticle">新增</el-button>
       </div>
       <el-table v-loading="loading" :data="articleList" border style="width: 100%">
         <el-table-column type="index" label="#" fixed="left" />
@@ -74,7 +73,7 @@
             <el-button style="margin-right: 10px" type="text" size="small" @click="goEdit(scope.row)">
               <i style="margin-right: 6px" class="el-icon-view" />编辑文章
             </el-button>
-            <el-button type="text" size="small" @click="goDelete(scope.row)">
+            <el-button type="text" size="small" @click="toDelete(scope.row)">
               <span style="color: red">删除</span>
             </el-button>
           </template>
@@ -89,14 +88,15 @@
 </template>
 
 <script>
-import { findArticles, changeShowStatus } from '@/api/contentManage/articleList'
+import { findArticles, changeShowStatus, del } from '@/api/contentManage/articleList'
 import mix from '@/mixins/index'
 export default {
     name: '',
     mixins: [mix],
     data() {
         return {
-            searchArticleForm: {},
+            search: {},
+            searchForm: {},
             articleList: [],
             loading: ''
         }
@@ -110,12 +110,13 @@ export default {
             this.searchForm = this.$options.data().searchForm
         },
         searchArticle() {
+            console.log(111)
+
             this.page.currentPage = 1
             this.searchForm = Object.assign({}, this.search)
             this.getArticleList()
         },
         switchCode(row) {
-            console.log('row.isShow: ', row.isShow)
             // 记录修改之前的状态,防止修改失败
             const tempStates = row.isShow === 0 ? 1 : 0
             changeShowStatus({
@@ -123,7 +124,6 @@ export default {
                 isShow: row.isShow
             })
                 .then((res) => {
-                    console.log(res)
                     if (res.success) {
                         this.$message.success('修改状态成功')
                     } else {
@@ -136,20 +136,35 @@ export default {
                     row.isShow = tempStates
                 })
         },
-        goEdit(value) {
-            console.log('value: ', value)
+        toAddArticle(value) {
+            this.$router.push({ name: 'AddArticle' })
         },
-        goDelete(value) {
-            console.log('value: ', value)
+        goEdit(value) {
+            this.$router.push({ name: 'EditorArticle', params: { id: value.id }})
+        },
+        toDelete(value) {
+            this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
+                confirmButtonText: '确定',
+                cancelButtonText: '取消',
+                type: 'warning'
+            }).then(res => {
+                del(value.id).then(res => {
+                    if (res.success) {
+                        this.$message('删除成功')
+                    } else {
+                        this.$message('删除失败')
+                    }
+                })
+            }).catch((rej) => {
+                this.$message('您取消了')
+            })
         },
         handleSizeChange(value) {
-            console.log('value: ', value)
             this.page.size = value
             this.page.currentPage = 1
             this.getArticleList()
         },
         handleCurrentChange(value) {
-            console.log(value)
             this.page.currentPage = value
             this.getArticleList()
         },
@@ -161,11 +176,10 @@ export default {
                     params[key] = this.searchForm[key]
                 }
             }
-            findArticles(this.page.currentPage, this.page.size).then(res => {
+            findArticles(this.page.currentPage, this.page.size, params).then(res => {
                 if (res.success) {
                     this.articleList = res.data.rows
                     this.page.total = res.data.total
-                    console.log('this.articleList: ', this.articleList)
                 } else {
                     this.$message.error('获取列表失败')
                 }

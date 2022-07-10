@@ -70,12 +70,14 @@ export const constantRoutes = [
             {
                 path: 'addArticle',
                 name: 'AddArticle',
+                hidden: true,
                 component: () => import('@/views/contentManage/articleList/editorArticle'),
                 meta: { title: '增加文章', icon: 'table' }
             },
             {
                 path: 'editorArticle/:id',
                 name: 'EditorArticle',
+                hidden: true,
                 component: () => import('@/views/contentManage/articleList/editorArticle'),
                 meta: { title: '编辑文章', icon: 'table' }
             },

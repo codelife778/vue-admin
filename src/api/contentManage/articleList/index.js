@@ -26,3 +26,12 @@ export function productArticle(id) {
         url: `/lejuAdmin/productArticle/productArticle/${id}`
     })
 }
+
+/* 删除文章 */
+
+export function del(id) {
+    return request({
+        url: `/lejuAdmin/productArticle/del/${id}`,
+        method: 'delete'
+    })
+}
