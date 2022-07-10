@@ -14,7 +14,7 @@ export default {
                 text: 'loading.....',
                 spinner: 'el-icon-loading'
             },
-            uploadUrl: '/lejuAdmin/material/uploadFileOss' // 上传素材公用接口
+            uploadUrl: 'http://localhost/lejuAdmin/material/uploadFileOss' // 上传素材公用接口
 
         }
     },

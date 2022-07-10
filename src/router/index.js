@@ -55,6 +55,62 @@ export const constantRoutes = [
         }]
     },
     {
+        path: '/goodsManage',
+        component: Layout,
+        redirect: '/goodsManage/goodsList',
+        name: 'GoodsManage',
+        meta: { title: '商品管理', icon: 'el-icon-s-help' },
+        children: [
+            {
+                path: 'goodsList',
+                name: 'GoodsList',
+                component: () => import('@/views/goodsManage/goodsList/index'),
+                meta: { title: '商品列表', icon: 'table' }
+            },
+            {
+                path: 'goodsCategory',
+                name: 'GoodsCategory',
+                component: () => import('@/views/goodsManage/goodsCategory/index'),
+                meta: { title: '商品分类', icon: 'table' }
+            },
+            {
+                path: 'skuManage',
+                name: 'SkuManage',
+                component: () => import('@/views/goodsManage/skuManage/index'),
+                meta: { title: '品牌管理', icon: 'table' }
+            }
+
+        ]
+    },
+    {
+        path: '/orderManage',
+        component: Layout,
+        redirect: '/orderManage/addressManage',
+        name: 'OrderManage',
+        meta: { title: '订单管理', icon: 'el-icon-s-help' },
+        children: [
+            {
+                path: 'addressManage',
+                name: 'AddressManage',
+                component: () => import('@/views/orderManage/addressManage/index'),
+                meta: { title: '地址管理', icon: 'table' }
+            },
+            {
+                path: 'orderList',
+                name: 'OrderList',
+                component: () => import('@/views/orderManage/orderList/index'),
+                meta: { title: '订单列表', icon: 'table' }
+            },
+            {
+                path: 'refundList',
+                name: 'RefundList',
+                component: () => import('@/views/orderManage/refundList/index'),
+                meta: { title: '退单列表', icon: 'table' }
+            }
+
+        ]
+    },
+    {
         path: '/contentManage',
         component: Layout,
         redirect: '/contentManage/articleList',

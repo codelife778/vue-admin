@@ -35,3 +35,12 @@ export function del(id) {
         method: 'delete'
     })
 }
+
+/* 素材上传接口 */
+
+export function uploadFileOss() {
+    return request({
+        url: '/lejuAdmin/material/uploadFileOss',
+        method: 'post'
+    })
+}
