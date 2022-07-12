@@ -38,6 +38,9 @@ import mavonEditor from 'mavon-editor'
 import 'mavon-editor/dist/css/index.css'
 Vue.use(mavonEditor)
 
+import BfComponents from '@/components/index.js'
+Vue.use(BfComponents)
+
 Vue.config.productionTip = false
 
 new Vue({

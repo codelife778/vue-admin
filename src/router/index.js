@@ -66,6 +66,7 @@ export const constantRoutes = [
                 name: 'GoodsList',
                 component: () => import('@/views/goodsManage/goodsList/index'),
                 meta: { title: '商品列表', icon: 'table' }
+
             },
             {
                 path: 'goodsCategory',
@@ -78,6 +79,23 @@ export const constantRoutes = [
                 name: 'SkuManage',
                 component: () => import('@/views/goodsManage/skuManage/index'),
                 meta: { title: '品牌管理', icon: 'table' }
+            }, {
+                path: 'detail/:id',
+                name: 'editorDetail',
+                // 不在左侧导航栏显示
+                hidden: true,
+                component: () =>
+                    import('@/views/goodsManage/goodsList/detail/index'),
+                meta: { title: '商品编辑', icon: 'table', activeMenu: '/product/list', componentUrl: '@/views/product/detail/index' }
+            },
+            {
+                path: 'detail',
+                name: 'addDetail',
+                // 不在左侧导航栏显示
+                hidden: true,
+                component: () =>
+                    import('@/views/goodsManage/goodsList/detail/index'),
+                meta: { title: '商品增加', icon: 'table', activeMenu: '/product/list', componentUrl: '@/views/product/detail/index' }
             }
 
         ]
