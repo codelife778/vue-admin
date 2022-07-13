@@ -55,3 +55,12 @@ export function del(productId) {
         method: 'delete'
     })
 }
+
+/* 更新分类商品信息 */
+export function updateCategory(data) {
+    return request({
+        url: '/lejuAdmin/category/updateCategory',
+        method: 'post',
+        data
+    })
+}

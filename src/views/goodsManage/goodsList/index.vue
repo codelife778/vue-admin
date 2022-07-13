@@ -281,7 +281,7 @@ export default {
         },
         // 新增商品
         addProduct() {
-            this.$router.push({ name: 'addProductDetail' })
+            this.$router.push({ name: 'addDetail' })
         },
         // 获取商品列表
         getProductList() {
@@ -310,7 +310,7 @@ export default {
         // 编辑
         goEdit(row) {
             // 路由跳转
-            this.$router.push({ name: 'productDetail', params: { id: row.id }})
+            this.$router.push({ name: 'editorDetail', params: { id: row.id }})
         },
         // 删除
         goDelete(row) {
@@ -368,7 +368,7 @@ export default {
           excel.export_json_to_excel({
               header: tHeader,
               data,
-              filename: '你可拉到吧',
+              filename: '你可拉倒吧',
               autoWidth: this.autoWidth,
               bookType: this.bookType
           })

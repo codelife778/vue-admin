@@ -113,11 +113,19 @@ export const constantRoutes = [
                 component: () => import('@/views/orderManage/addressManage/index'),
                 meta: { title: '地址管理', icon: 'table' }
             },
+
             {
                 path: 'orderList',
                 name: 'OrderList',
                 component: () => import('@/views/orderManage/orderList/index'),
                 meta: { title: '订单列表', icon: 'table' }
+            },
+            {
+                path: 'orderDetail/:id',
+                name: 'OrderDetail',
+                hidden: true,
+                component: () => import('@/views/orderManage/orderList/orderDetail/index'),
+                meta: { title: '订单详情', icon: 'table' }
             },
             {
                 path: 'refundList',

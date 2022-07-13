@@ -5,9 +5,9 @@ export default {
         return {
             page: {
                 currentPage: 1,
-                size: 2,
+                size: 10,
                 total: 0,
-                pageSizes: [2, 10, 30, 40]
+                pageSizes: [5, 10, 30, 40]
             },
             loadingOption: {
                 background: 'rgba(255,255,255,.9)',
