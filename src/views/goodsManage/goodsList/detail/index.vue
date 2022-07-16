@@ -320,7 +320,7 @@
           <div class="form-section-head">详情描述</div>
 
           <el-form-item size="small" label="商品详情">
-            <TinEditor ref="tin" />
+            <TinEditor ref="tin" v-model="content" />
           </el-form-item>
 
           <el-form-item label="备注" size="small">
@@ -371,6 +371,7 @@ export default {
     mixins: [mixin],
     data() {
         return {
+            content: '',
             pageLoading: false,
             couldNext: false, // button的loading动画
             step: 1,
@@ -595,7 +596,7 @@ export default {
 
                     // 短路语句如果左为真,执行右边语句 ⭐嵌套过深,防止报错
                     if (this.form.serviceIds && this.form.serviceIds.length > 0) {
-                        // this.form.serviceIds 字符串 "1,2,3"
+                        // this.form.serviceIds 字符串 "1,2,3",split用逗号把数组分割成字符串
                         this.serviceIds = this.form.serviceIds.split(',')
                     }
                     // 赋值富文本  把this.form.detailMobileHtml内容赋值到富文本中
@@ -857,7 +858,6 @@ export default {
                                 serviceIds: this.serviceIds.join(',')
                             }
                         })
-
                             .then((res) => {
                                 if (res.success) {
                                     this.$message.success('修改成功')
@@ -911,11 +911,14 @@ export default {
         },
         // 获取富文本框内容
         getTin() {
+            console.log('噶噶玛')
             var rs = this.$refs.tin.getContent()
             return rs
         },
         // 把 v 赋值到富文本框中
         setTin(v) {
+            console.log('v: ', v)
+
             this.$refs.tin.setDelayContent(v)
         }
     }

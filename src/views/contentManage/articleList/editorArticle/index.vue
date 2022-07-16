@@ -120,29 +120,27 @@ export default {
             }
         },
         handleUploadSucc(value) {
-            console.log('value: ', value)
+
         },
 
         handleInnerImg(value) {
-            console.log('value: ', value)
+
         },
 
         imgAdd(pos, $file) {
             var formdata = new FormData()
             formdata.append('file', $file)
-            console.log($file, uploadFileOss)
+
             uploadFileOss(formdata).then((res) => {
-                console.log(res)
                 this.$refs.mavon.$img2Url(pos, res.data.fileUrbl)
             })
         },
 
         imgDel(value1, value2) {
-            console.log('value: ', value1, value2)
+
         },
 
         getMarkDownHtml(val, html) {
-            console.log('val, html: ', val, html)
             this.form.content2 = html
         },
 
@@ -150,7 +148,6 @@ export default {
             this.pageLoading = true
 
             productArticle(this.id).then((res) => {
-                console.log('res: ', res)
                 if (res.success) {
                     this.form = res.data.productArticle
                 } else {

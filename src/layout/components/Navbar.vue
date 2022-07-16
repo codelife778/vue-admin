@@ -58,7 +58,7 @@ export default {
         }
     },
     mounted() {
-        console.log(getUserInfo())
+
     },
     methods: {
         toggleSideBar() {

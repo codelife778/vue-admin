@@ -36,17 +36,14 @@ const actions = {
         return new Promise((resolve, reject) => {
             login({ username: username.trim(), password: password })
                 .then((response) => {
-                    console.log(response.data)
-
                     const { token } = response.data
-                    console.log(token)
+
                     commit('SET_TOKEN', token)
-                    console.log(11)
 
                     setToken(token)
                     const name = response.data.userInfo.username
                     const avatar = response.data.userInfo.icon
-                    console.log(name, avatar)
+
                     commit('SET_NAME', name)
 
                     commit('SET_AVATAR', avatar)

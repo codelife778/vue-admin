@@ -31,7 +31,7 @@ router.beforeEach(async(to, from, next) => {
             // 如果有token跳转的不是登录页面, 先判断有没有用户信息
             // const hasGetUserInfo = store.getters.name
             const hasGetUserInfo = getUserInfo()
-            console.log(hasGetUserInfo)
+
             // debugger
             // 有用户信息,放行
             if (hasGetUserInfo) {

@@ -47,12 +47,14 @@ export const constantRoutes = [
         path: '/',
         component: Layout,
         redirect: '/dashboard',
-        children: [{
-            path: 'dashboard',
-            name: 'Dashboard',
-            component: () => import('@/views/dashboard/index'),
-            meta: { title: 'Dashboard', icon: 'dashboard' }
-        }]
+        children: [
+            {
+                path: 'dashboard',
+                name: 'Dashboard',
+                component: () => import('@/views/dashboard/index'),
+                meta: { title: 'Dashboard', icon: 'dashboard' }
+            }
+        ]
     },
     {
         path: '/goodsManage',
@@ -66,7 +68,6 @@ export const constantRoutes = [
                 name: 'GoodsList',
                 component: () => import('@/views/goodsManage/goodsList/index'),
                 meta: { title: '商品列表', icon: 'table' }
-
             },
             {
                 path: 'goodsCategory',
@@ -79,25 +80,33 @@ export const constantRoutes = [
                 name: 'SkuManage',
                 component: () => import('@/views/goodsManage/skuManage/index'),
                 meta: { title: '品牌管理', icon: 'table' }
-            }, {
+            },
+            {
                 path: 'detail/:id',
                 name: 'editorDetail',
                 // 不在左侧导航栏显示
                 hidden: true,
-                component: () =>
-                    import('@/views/goodsManage/goodsList/detail/index'),
-                meta: { title: '商品编辑', icon: 'table', activeMenu: '/product/list', componentUrl: '@/views/product/detail/index' }
+                component: () => import('@/views/goodsManage/goodsList/detail/index'),
+                meta: {
+                    title: '商品编辑',
+                    icon: 'table',
+                    activeMenu: '/product/list',
+                    componentUrl: '@/views/product/detail/index'
+                }
             },
             {
                 path: 'detail',
                 name: 'addDetail',
                 // 不在左侧导航栏显示
                 hidden: true,
-                component: () =>
-                    import('@/views/goodsManage/goodsList/detail/index'),
-                meta: { title: '商品增加', icon: 'table', activeMenu: '/product/list', componentUrl: '@/views/product/detail/index' }
+                component: () => import('@/views/goodsManage/goodsList/detail/index'),
+                meta: {
+                    title: '商品增加',
+                    icon: 'table',
+                    activeMenu: '/product/list',
+                    componentUrl: '@/views/product/detail/index'
+                }
             }
-
         ]
     },
     {
@@ -124,7 +133,8 @@ export const constantRoutes = [
                 path: 'orderDetail/:id',
                 name: 'OrderDetail',
                 hidden: true,
-                component: () => import('@/views/orderManage/orderList/orderDetail/index'),
+                component: () =>
+          import('@/views/orderManage/orderList/orderDetail/index'),
                 meta: { title: '订单详情', icon: 'table' }
             },
             {
@@ -132,6 +142,56 @@ export const constantRoutes = [
                 name: 'RefundList',
                 component: () => import('@/views/orderManage/refundList/index'),
                 meta: { title: '退单列表', icon: 'table' }
+            },
+            {
+                path: 'refundDetail/:id',
+                name: 'RefundDetail',
+                hidden: true,
+                component: () =>
+          import('@/views/orderManage/refundList/refundDetail/index'),
+                meta: { title: '退货详情', icon: 'table' }
+            }
+        ]
+    },
+    {
+        path: '/registerUserManage',
+        component: Layout,
+        redirect: '/registerUserManage/registerUserList',
+        name: 'registerUserManage',
+        meta: { title: '注册用户管理', icon: 'el-icon-s-help' },
+        alwaysShow: true,
+
+        children: [
+            {
+                path: 'registerUserList',
+                name: 'RegisterUserList',
+                component: () =>
+          import('@/views/registerUserManage/registerUserList/index'),
+                meta: { title: '用户列表', icon: 'table' }
+            }
+        ]
+    },
+    {
+        path: '/marketing',
+        component: Layout,
+        redirect: '/marketing/marketingList',
+        name: 'marketing',
+        meta: { title: '营销管理', icon: 'el-icon-goods' },
+        alwaysShow: true,
+        children: [
+            {
+                path: 'marketingList',
+                name: 'MarketingList',
+                component: () =>
+                    import('@/views/marketing/marketingList'),
+                meta: { title: '限时活动', icon: 'el-icon-files', componentUrl: '@/views/marketing/marketingList' }
+            },
+            {
+                path: 'adList',
+                name: 'AdList',
+                component: () =>
+                    import('@/views/marketing/adList'),
+                meta: { title: '广告列表', icon: 'el-icon-files', componentUrl: '@/views/marketing/adList' }
             }
 
         ]
@@ -153,14 +213,16 @@ export const constantRoutes = [
                 path: 'addArticle',
                 name: 'AddArticle',
                 hidden: true,
-                component: () => import('@/views/contentManage/articleList/editorArticle'),
+                component: () =>
+          import('@/views/contentManage/articleList/editorArticle'),
                 meta: { title: '增加文章', icon: 'table' }
             },
             {
                 path: 'editorArticle/:id',
                 name: 'EditorArticle',
                 hidden: true,
-                component: () => import('@/views/contentManage/articleList/editorArticle'),
+                component: () =>
+          import('@/views/contentManage/articleList/editorArticle'),
                 meta: { title: '编辑文章', icon: 'table' }
             },
             {
@@ -215,13 +277,15 @@ export const constantRoutes = [
                         children: [
                             {
                                 path: 'menu1-2-1',
-                                component: () => import('@/views/nested/menu1/menu1-2/menu1-2-1'),
+                                component: () =>
+                  import('@/views/nested/menu1/menu1-2/menu1-2-1'),
                                 name: 'Menu1-2-1',
                                 meta: { title: 'Menu1-2-1' }
                             },
                             {
                                 path: 'menu1-2-2',
-                                component: () => import('@/views/nested/menu1/menu1-2/menu1-2-2'),
+                                component: () =>
+                  import('@/views/nested/menu1/menu1-2/menu1-2-2'),
                                 name: 'Menu1-2-2',
                                 meta: { title: 'Menu1-2-2' }
                             }
@@ -259,11 +323,12 @@ export const constantRoutes = [
     { path: '*', redirect: '/404', hidden: true }
 ]
 
-const createRouter = () => new Router({
+const createRouter = () =>
+    new Router({
     // mode: 'history', // require service support
-    scrollBehavior: () => ({ y: 0 }),
-    routes: constantRoutes
-})
+        scrollBehavior: () => ({ y: 0 }),
+        routes: constantRoutes
+    })
 
 const router = createRouter()
 
