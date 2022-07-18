@@ -57,6 +57,34 @@ export const constantRoutes = [
         ]
     },
     {
+
+        path: '/authority',
+        component: Layout,
+        redirect: '/authority/account',
+        name: 'Authority',
+        meta: { title: '权限管理', icon: 'el-icon-s-help' },
+        children: [
+            {
+                path: 'account',
+                name: 'Account',
+                component: () => import('@/views/authority/account/index'),
+                meta: { title: '账号管理', icon: 'table' }
+            },
+            {
+                path: 'role',
+                name: 'Role',
+                component: () => import('@/views/authority/role/index'),
+                meta: { title: '角色管理', icon: 'table' }
+            },
+            {
+                path: 'resource',
+                name: 'Resource',
+                component: () => import('@/views/authority/resource/index'),
+                meta: { title: '资源管理', icon: 'table' }
+            }
+        ]
+    },
+    {
         path: '/goodsManage',
         component: Layout,
         redirect: '/goodsManage/goodsList',
@@ -184,7 +212,7 @@ export const constantRoutes = [
                 name: 'MarketingList',
                 component: () =>
                     import('@/views/marketing/marketingList'),
-                meta: { title: '限时活动', icon: 'el-icon-files', componentUrl: '@/views/marketing/marketingList' }
+                meta: { title: '营销列表', icon: 'el-icon-files', componentUrl: '@/views/marketing/marketingList' }
             },
             {
                 path: 'adList',
@@ -230,6 +258,27 @@ export const constantRoutes = [
                 name: 'MaterialList',
                 component: () => import('@/views/contentManage/materialList/index'),
                 meta: { title: '素材列表', icon: 'tree' }
+            }
+        ]
+    },
+    {
+        path: '/personCenter',
+        component: Layout,
+        redirect: '/personCenter/personHome',
+        name: 'personCenter',
+        meta: { title: '个人中心', icon: 'el-icon-s-help' },
+        children: [
+            {
+                path: 'personHome',
+                name: 'PersonHome',
+                component: () => import('@/views/personCenter/personHome/index'),
+                meta: { title: '个人主页', icon: 'table' }
+            },
+            {
+                path: 'personSetting',
+                name: 'PersonSetting',
+                component: () => import('@/views/personCenter/personSetting/index'),
+                meta: { title: '个人设置', icon: 'table' }
             }
         ]
     },

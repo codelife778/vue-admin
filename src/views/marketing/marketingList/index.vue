@@ -2,7 +2,7 @@
   <div>
     <el-card>
       <div slot="header">
-        <el-button type="primary">新增</el-button>
+        <el-button type="primary" @click="toAddMarketing">新增</el-button>
       </div>
       <div>
         <el-table :data="list" style="width: 100%" border>
@@ -33,22 +33,27 @@
           <el-table-column align="center" prop="price" label="商品价格" width="200" />
           <el-table-column align="center" prop="productCategoryName" label="商品类别" width="200" />
           <el-table-column align="center" prop="createTime" label="创建时间" width="200" />
-          <el-table-column header-align="center" align="center" prop="prop" label="操作">
+          <el-table-column align="center" prop="prop" label="操作" fixed="right">
             <template slot-scope="scope">
-              <el-button type="text">删除</el-button>
+              <el-button type="text" @click="toDelete(scope.row)"><span style="color:red">删除</span></el-button>
             </template>
           </el-table-column>
 
         </el-table>
       </div>
     </el-card>
+    <addMarketing ref="popUp" @success="popUpSuccess" />
   </div>
 </template>
 
 <script>
 import marketListApi from '@/api/marketing/marketingListApi/index'
+import addMarketing from '@/views/marketing/marketingList/addMarketingPopup/index.vue'
 export default {
     name: '',
+    components: {
+        addMarketing
+    },
     data() {
         return {
             list: []
@@ -58,6 +63,36 @@ export default {
         this.getList()
     },
     methods: {
+        popUpSuccess() {
+            this.getList()
+        },
+        toAddMarketing() {
+            this.$refs.popUp.openPopup()
+        },
+        toDelete(row) {
+            this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
+                confirmButtonText: '确定',
+                cancelButtonText: '取消',
+                type: 'warning'
+            }).then(() => {
+                marketListApi.delRecommend(row.recommendId).then(res => {
+                    if (res.success) {
+                        this.getList()
+                        this.$message({
+                            type: 'success',
+                            message: '删除成功!'
+
+                        })
+                    } else {
+                        this.$message.error(res.message)
+                    }
+                }).catch(res => {
+
+                })
+            }).catch(res => {
+
+            })
+        },
         getList() {
             marketListApi
                 .findAllRecommends()
@@ -69,7 +104,9 @@ export default {
                         this.$message.warning('请求失败')
                     }
                 })
-                .catch((res) => {})
+                .catch((res) => {
+
+                })
         }
     }
 }
