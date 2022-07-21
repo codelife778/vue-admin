@@ -23,7 +23,12 @@ export default {
     computed: {
         ...mapGetters(['sidebar']),
         routes() {
-            return this.$router.options.routes
+            // 拼接异步生成的路由
+            // this.$router.options.routes 静态路由
+            // this.$store.state.user.asyncRoutes 动态路由
+            return this.$router.options.routes.concat(
+                this.$store.state.user.asyncRoutes
+            )
         },
         activeMenu() {
             const route = this.$route

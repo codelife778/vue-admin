@@ -38,7 +38,7 @@
 import { mapGetters } from 'vuex'
 import Breadcrumb from '@/components/Breadcrumb'
 import Hamburger from '@/components/Hamburger'
-import { getToken, getUserInfo, removeToken, removeUserInfo } from '@/utils/auth'
+import { getToken, getUserInfo, removeToken, removeUserInfo, removeVuexUserInfo } from '@/utils/auth'
 
 export default {
     components: {
@@ -67,6 +67,7 @@ export default {
         async logout() {
             removeToken()
             removeUserInfo()
+            removeVuexUserInfo()
             this.$router.push('/login')
             // await this.$store.dispatch('user/logout')
             // this.$router.push(`/login?redirect=${this.$route.fullPath}`)

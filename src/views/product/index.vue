@@ -172,7 +172,7 @@ import swtichStatus from '@/api/goodsManage/goodsList/switch/index'
 // import productApi from '@/api/product/index'
 // import brandApi from '@/api/brand/index'
 import mixin from '@/mixins/index'
-import skuDetailCom from '@/views/goodsManage/component/skuDetail.vue'
+import skuDetailCom from '@/views/product/component/skuDetail.vue'
 export default {
     name: 'ProductList',
     components: { skuDetailCom },

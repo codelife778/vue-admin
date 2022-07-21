@@ -2,6 +2,7 @@
 
 const TokenKey = 'bf-admin-token'
 const InfoKey = 'user-info'
+import store from '@/store'
 
 export function getToken() {
     return JSON.parse(localStorage.getItem(TokenKey))
@@ -25,4 +26,9 @@ export function setUserInfo(val) {
 
 export function removeUserInfo() {
     return localStorage.removeItem('InfoKey')
+}
+
+// 清除vuex 用户权限路由信息等
+export function removeVuexUserInfo() {
+    store.commit('user/REMOVE_USERINFO')
 }

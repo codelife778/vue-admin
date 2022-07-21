@@ -96,7 +96,7 @@
 
 <script>
 import skuManageApi from '@/api/goodsManage/skuManage/index'
-import skuComponent from '@/views/goodsManage/skuManage/skuComponent/index.vue'
+import skuComponent from '@/views/product/brand/skuComponent/index.vue'
 import mix from '@/mixins/index'
 // import brandApi from '@/api/brand/index'
 // import mixin from '@/mixins/index'

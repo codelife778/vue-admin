@@ -50,13 +50,13 @@ import { login, logout, getInfo } from '@/api/user'
 export default {
     name: 'Login',
     data() {
-        const validateUsername = (rule, value, callback) => {
-            if (!validUsername(value)) {
-                callback(new Error('Please enter the correct user name'))
-            } else {
-                callback()
-            }
-        }
+        // const validateUsername = (rule, value, callback) => {
+        //     if (!validUsername(value)) {
+        //         callback(new Error('Please enter the correct user name'))
+        //     } else {
+        //         callback()
+        //     }
+        // }
         const validatePassword = (rule, value, callback) => {
             if (value.length < 6) {
                 callback(new Error('The password can not be less than 6 digits'))
@@ -70,9 +70,9 @@ export default {
                 password: '123456'
             },
             loginRules: {
-                username: [
-                    { required: true, trigger: 'blur', validator: validateUsername }
-                ],
+                // username: [
+                //     { required: true, trigger: 'blur', validator: validateUsername }
+                // ],
                 password: [
                     { required: true, trigger: 'blur', validator: validatePassword }
                 ]
@@ -120,6 +120,7 @@ export default {
                         console.log(res)
                         setToken(res.data.token)
                         setUserInfo(res.data.userInfo)
+                        // debugger
                         this.$router.push('/')
                     })
                     /* store模块 指定user模块中的名称为login的 方法 */
