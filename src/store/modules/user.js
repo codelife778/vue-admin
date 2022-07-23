@@ -147,7 +147,14 @@ const actions = {
                         // 动态路由与静态路由合并,左边router静态路由,右边动态路由
                         // ⭐这玩意不是响应式的,添加了但是不显示,起作用的位置:layout=>coponent=>sideber=>index.vue
                         //
+                        // router.options.routes.push(...routes)
+                        // router.options.routes = routes
                         router.addRoutes(routes)
+                        // console.log(...routes)
+                        // console.log(router)
+                        // debugger
+                        // console.log(router, _this)
+                        // router.options.routes.concat(routes)
 
                         // 异步操作完成,进行下一步操作
                         resolve()

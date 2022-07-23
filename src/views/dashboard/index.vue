@@ -143,7 +143,7 @@ export default {
     created() {
     // 设置定时器,展示 百分比变化
         setTimeout(() => {
-            this.percentage = 88
+            this.percentage = 100
         }, 3000)
         // 初始化时间
         this.timeText = this.formatDate(new Date())
