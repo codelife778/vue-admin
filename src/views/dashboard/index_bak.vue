@@ -1,8 +1,5 @@
 <template>
-  <div
-    v-loading="pageLoading" :element-loading-text="loadingOption.text"
-    :element-loading-spinner="loadingOption.spinner" :element-loading-background="loadingOption.background"
-    class="dashboard">
+  <div v-loading="pageLoading" :element-loading-text="loadingOption.text" :element-loading-spinner="loadingOption.spinner" :element-loading-background="loadingOption.background" class="dashboard">
     <el-card shadow="never" class="card">
       <div slot="header">
         <el-row :gutter="20">

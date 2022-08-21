@@ -7,7 +7,7 @@
             <svg-icon icon-class="full" @click="fullScreen" />
           </span>
           <div class="title">
-            <span>不凡数据大屏</span>
+            <span>数据大屏</span>
           </div>
           <div class="time">{{ timeText }}</div>
         </div>
@@ -131,10 +131,10 @@ export default {
             timeText: '', // 时间显示
             timer: null, // 定时器(时间显示的)
             numData: {
-                saleNum: 12010284, // 电商数据的 销售量(假数据)
+                saleNum: 8888888, // 电商数据的 销售量(假数据)
                 statisticsData: statisticsData // 统计数据(假数据)
             },
-            percentage: 55, // 百分比
+            percentage: 33, // 百分比
             mapData: mapData, // 地图数据
 
             tableData: tableData // 大额订单数据
